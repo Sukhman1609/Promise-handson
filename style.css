@@ -1,0 +1,16 @@
+body{
+    background-color: bisque;
+}
+pre{
+    font-size: 15pt;
+}
+h1{
+    color: blueviolet;
+    text-align: center;
+    font-size: 40pt;
+}
+
+h2:hover{
+    font-size: 20pt;
+    color: red;
+}

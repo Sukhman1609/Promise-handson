@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handson</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body><h1>**Promise Async Await**</h1>
+    <h2>Q1. Write one example explaining how you can write a callback function.</h2>
+    <pre>function calculate(num1,num2){
+            return num1*num2;
+         }
+         function displayData(name,age){
+            console.log(`${name}:age is ${age}`);
+         }
+         displayData("Saman",calculate(4,5));
+    </pre>
+    <hr>
+    <hr>
+    <h2><pre>Q2. "Write a callback function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+
+        Explain callback hell.
+        Numbers
+        1
+        2
+        3
+        4
+        5
+        6
+        7"</pre></h2>
+        <pre>setTimeout(()=>{
+            console.log("1");
+            setTimeout(() => {
+                console.log("2");
+                setTimeout(() => {
+                    console.log("3"); 
+                    setTimeout(() => {
+                        console.log("4"); 
+                        setTimeout(() => {
+                            console.log("5");
+                            setTimeout(() => {
+                                console.log("6"); 
+                                setTimeout(() => {
+                                    console.log("7");   
+                                }, 7000); 
+                            }, 6000); 
+                        }, 5000);
+                    }, 4000); 
+                }, 3000);
+                
+            }, 2000);
+        }, 1000 );</pre>
+        <hr>      
+        <hr>
+        <h2><pre>Q3. "Write the promise function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+
+            Numbers
+            1
+            2
+            3
+            4
+            5
+            6
+            7"</pre></h2> 
+            <pre>
+                function printNumbersWithDelay() {
+                    let number = 1;
+                  
+                    function printNumber() {
+                      return new Promise((resolve) => {
+                        setTimeout(() => {
+                          console.log(number);
+                          resolve();
+                        }, number * 1000);
+                      });
+                    }
+                  
+                    function printNextNumber() {
+                      if (number <= 7) {
+                        printNumber()
+                          .then(() => {
+                            number++;
+                            printNextNumber();
+                          });
+                      }
+                    }
+                  
+                    printNextNumber();
+                  }
+                  
+                  printNumbersWithDelay();
+            </pre>     
+        <hr>
+        <hr>
+        <h2>Q4."Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
+            then it should go to reject the state and catch the error and print Promise Rejected "</h2>
+            <pre>function promiseFun(p){
+                return new Promise((a,b)=>{
+                    a('Promise resolve successfully...')
+                }
+            else{
+                b('Promise Rejected')
+            }})
+        }
+        promiseFun(variable)
+        .then((item)=>console.log(item))
+        .catch((err)=>console.log(err))
+        </pre>
+        <hr>
+        <hr>
+        <h2>Q5. Create examples to explain callback function.</h2>
+        <pre>function hello(name, callback) {
+            console.log('Hi' + ' ' + name);
+            callback();
+        }
+        
+        function callMe() {
+            console.log('I am callback function');
+        }
+        
+        hello('Buddy', callMe);</pre>
+        <h3>This function that is passed as an argument inside of another function is called a callback function.</h3>
+        <hr>
+        <hr>
+        <h2>Q6. Create examples to explain callback hell function.</h2>
+        <pre>setTimeout(() => {
+            console.log("Hello");
+            setTimeout(() => {
+                console.log("Hey");
+                setTimeout(() => {
+                    console.log("Namaste");
+                    setTimeout(() => {
+                        console.log("Hi");
+                        setTimeout(() => {
+                            console.log("Whatsup");
+                        }, 2000);
+                    }, 2000);
+                }, 2000);
+            }, 2000);
+        }, 2000); </pre>
+        <hr>
+        <hr>
+        <h2>Q7. Create examples to explain promises function</h2>
+        <pre>let variable=true;
+            let myPromise=new Promise((res,rej)=>{
+                if(variable ===true){
+                    res("Promise resolve successfully...")
+                }
+            else{
+                rej("Promise Rejected!!!)
+            }
+            });
+        myPromise.then((data)=>console.log(data))
+    .catch((err)=>console.log(err));</pre>
+    <hr>
+    <hr>
+    <h2>Q8.Create examples to explain async await function</h2>
+    <!-- <pre>function promiseChain(alpha,timeout){
+              return new Promise((res,rej)=>{
+                setTimeout(()=>{
+                    console.log(alpha);
+                    res("The promise is resolved..!!");
+                },timeout);
+              })
+    }
+
+    function visible(){
+        promiseChain("A",2000)
+        .then{()=>promiseChain("E",4000)}
+        .then{()=>promiseChain("I",3000)}
+        .then{()=>promiseChain("U",1000)}
+    }
+    visible(); -->
+    <pre>
+        <h1 id="hey"></h1>
+
+
+        async function myDisplay() {
+            let myPromise = new Promise(function(resolve) {
+              setTimeout(function() {resolve("Hello Frnds ");}, 3000);
+            });
+            document.getElementById("hey").innerHTML = await myPromise;
+          }
+          
+          myDisplay();
+    </pre>
+    <hr>
+    <hr>
+    <h2>Q9. Create examples to explain promise.all function.</h2>
+    <pre>function abc(){
+        return new Promise((res,rej)=>{
+            if(20%2===0){
+                res("This is a Even number");
+            }
+            else{
+                rej("This is a odd number");
+            }
+        })}
+    
+        const promisevar=new Promise((res,rej)=>{
+        if(true){
+            res("Hi its done!!!!";)
+        }
+        else{
+            rej("Sorry!!!!")
+        })}
+    Promise.all([abc(),promisevar()]).then((data)=>console.log(data))
+                                     .catch((err)=>console.log(err))</pre>
+        <hr>
+        <hr>
+        <script src="script.js"></script>
+</body>
+</html>
